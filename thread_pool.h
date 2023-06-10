@@ -1,5 +1,4 @@
 #pragma once
-
 #include <queue>
 #include <thread>
 #include <mutex>
@@ -15,8 +14,7 @@
 
 #include "noncopyable.h"
 
-namespace raft
-{
+
 
 #if _HAS_CXX20
     // 任务队列
@@ -245,4 +243,3 @@ namespace raft
         }
     };
 #endif
-}
