@@ -1,10 +1,10 @@
-#pragma once
 #include <queue>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
 #include <future>
 #include <stdexcept>
+#include "noncopyable.h"
 
 #if _HAS_CXX20
 #include <coroutine>
@@ -12,11 +12,11 @@
 #include <functional>
 #endif
 
-#include "noncopyable.h"
 
 
 
-#if _HAS_CXX20
+#ifdef __cpp_coroutines
+
     // 任务队列
     template <typename T>
     class thread_saft_queue
@@ -165,7 +165,8 @@
             }
         }
     };
-#else
+#else // __cpp_coroutines
+#endif
     class thread_pool : public noncopyable
     {
     private:
@@ -242,4 +243,3 @@
             }
         }
     };
-#endif
